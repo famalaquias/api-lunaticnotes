@@ -12,6 +12,10 @@ API própria desenvolvida durante para o projeto LunaticNotes.
 
 <p align="center">
   Clique <a href="https://github.com/famalaquias/app-lunaticnotes">aqui</a> para acessar o repositório do projeto LunaticNotes.
+</p>
+
+
+<p align="center">
   Clique <a href="https://app-lunaticnotes.vercel.app/">aqui</a> para acessar o link do projeto LunaticNotes. 
 </p>
 
