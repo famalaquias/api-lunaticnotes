@@ -2,8 +2,8 @@
   Utilizando o framework Express na aplicação;
   Arquivo de configuração do express;
 */
-
 require('express-async-errors');
+require('dotenv/config');
 
 const migrationsRun = require('./database/sqlite/migrations');
 
@@ -50,6 +50,6 @@ app.use(( error, _req, res, _next ) => {
 });
 
 /* porta que o express ficará observando as requisições */
-const PORT = 3333;
+const PORT = process.env.SERVER_PORT || 3333;
 
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));
