@@ -35,10 +35,10 @@ class NotesController {
     await knex("links").insert(linksInsert);
 
     /* Tags: */
-    const tagsInsert = tags.map(name => {
+    const tagsInsert = tags.map(tag => {
       return {
         note_id,
-        name,
+        name: tag,
         user_id
       }
     });
@@ -89,8 +89,10 @@ class NotesController {
     método GET;
   */
   async index(req, res) {
-    // const { title, tags } = req.query;
-    // const user_id = req.user.id;
+    /* Antes do middleware de autenticação */
+    // const { title, tags, user_id } = req.query;
+
+    /* Depois do middleware de autenticação */
     const { title, tags } = req.query;
     const user_id = req.user.id;
 

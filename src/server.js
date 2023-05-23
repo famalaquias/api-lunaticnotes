@@ -23,6 +23,7 @@ const app = express();
 corpo da requisição, serão no formato JSON */
 app.use(express.json());
 app.use(cors());
+
 /* serve para pegar a imagem carregada pelo usuário e mostrá-la 
 no insomnia */
 app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER));

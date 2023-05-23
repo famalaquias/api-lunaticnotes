@@ -6,7 +6,7 @@ const AppError = require('../utils/AppError');
 const authConfig = require('../configs/auth');
 
 function ensureAuthenticated(req, res, next) {
-  /* authHeader: obter o cabeçalho;
+  /* authHeader: para obter o cabeçalho - 
   é onde vai estar o token do usuário  */
   const authHeader = req.headers.authorization;
 
@@ -15,9 +15,11 @@ function ensureAuthenticated(req, res, next) {
     throw new AppError("JWT Token não informado", 401);
   }
 
-  /* se o token existir, vamos acessar através de um vetor o que está dentro
-  do header;
-  split: pega a string e a separa passando ela para um vetor (quebra o texto) */
+  /* se o token existir, vamos acessar através de um vetor o que 
+  está dentro do header;
+  split: pega a string e a separa a string, passando ela para um 
+  vetor (quebra o texto em string), ou seja, na primeira posição
+  tem o "Bare" e na segunda posição o token; */
   const [, token] = authHeader.split(" ");
 
   /* tratamento de exceção */
@@ -26,14 +28,14 @@ function ensureAuthenticated(req, res, next) {
     conteúdo do token */
     const { sub: user_id } = verify(token, authConfig.jwt.secret);
 
-    /* cria dentro da requisição uma propriedade chamada "user" e dentro
-    dela cria uma propriedade chamada ID */
+    /* cria dentro da requisição uma propriedade chamada "user" 
+    e dentro dela cria uma propriedade chamada ID */
     req.user = {
       id: Number(user_id),
     };
 
-    /* se der tudo certo, chama o next: próxima função, que é o destino da 
-    aplicação */
+    /* se der tudo certo, chama o next: próxima função, que é o 
+    destino da aplicação */
     return next();
   } catch {
     /* se algo der errado, retorna o error */

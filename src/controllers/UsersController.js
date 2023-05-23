@@ -9,7 +9,6 @@ const AppError = require('../utils/AppError');
 
 /* importando a conexão com o BD */
 const sqliteConnection = require('../database/sqlite');
-// const { response } = require('express');
 
 class UsersController {
   /* 
@@ -37,9 +36,9 @@ class UsersController {
     e passa como parâmetro: a senha e o fator de complexidade do hash */
     const hashPassword = await hash(password, 8);
 
-    /* executando uma inserção:
-    insira em usuários na coluna name, email, password,
-    os valores [ name, email, password ];
+    /* run: executando uma inserção - cria um dado de usuário no 
+    BD do beekepe: insira em usuários na coluna name, email, 
+    password, os valores [ name, email, password ];
     */
     await database.run(
       "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
@@ -50,11 +49,16 @@ class UsersController {
   }
 
   /*  
-    update: atualizando algum dado/registro do usuário;
+    update: atualiza algum dado/registro do usuário;
     método PUT;
   */
   async update(req, res) {
     const { name, email, password, old_password } = req.body;
+    /* const { id } = req.params; */
+    /* após criar o arquivo e a rota de autenticação do usuário,
+    não se usa mais a conts acima(const { id } = req.params), vai
+    usar o const user_id = req.user.id, pois agora já tem o Id 
+    indorporado nas requisições; */
     const user_id = req.user.id;
 
     /* conectando com o BD */
@@ -91,7 +95,7 @@ class UsersController {
     user.name = name ?? user.name;  
     user.email = email ?? user.email;
 
-    /* verifica se a nova senha for informada, mas a senha antiga
+    /* se a nova senha for informada, mas a senha antiga
     (old_password) não for informada, retorna a um erro */
     if(password && !old_password) {
       throw new AppError("Você precisa informar a senha antiga.");

@@ -18,6 +18,8 @@ const usersController = new UsersController();
 const userAvatarController = new UserAvatarController();
 
 userRoutes.post("/", usersController.create);
+// userRoutes.put("/:id", usersController.update);
+/* após criar o arquivo e a rota de autenticação do usuário */
 userRoutes.put("/", ensureAuthenticated, usersController.update);
 userRoutes.patch("/avatar", ensureAuthenticated, upload.single("avatar"), userAvatarController.update);
 

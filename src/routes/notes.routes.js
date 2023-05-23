@@ -9,7 +9,8 @@ const notesRoutes = Router();
 /* Instanciando a classe */
 const notesController = new NotesController();
 
-/* quando quer usar o middleware de autenticação em todas as rotas */
+/* quando quiser usar o middleware de autenticação em todas as 
+rotas */
 notesRoutes.use(ensureAuthenticated);
 
 notesRoutes.post("/", notesController.create);

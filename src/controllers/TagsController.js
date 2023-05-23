@@ -9,6 +9,10 @@ class TagsController {
     método GET;
   */
   async index(req, res) {
+    /* Antes do middleware de autenticação */
+    /* const { user_id } = req.params; */
+
+    /* Depois do middleware de autenticação */
     const user_id = req.user.id;
 
     const tags = await knex("tags")
