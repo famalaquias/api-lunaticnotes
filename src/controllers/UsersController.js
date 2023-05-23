@@ -18,6 +18,8 @@ class UsersController {
   async create(req, res) {
     const { name, email, password } = req.body;
 
+    console.log(name, email, password);
+
     /* conectando com o BD */
     const database = await sqliteConnection();
     
